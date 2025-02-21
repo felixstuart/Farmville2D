@@ -9,9 +9,13 @@ public class MyFarm {
     public MyFarm() {
 
         // declare a 2D grid of plots
-
+        grid = new Plot[3][4];
         // construct a 2D grid of plots
-
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                grid[r][c] = new Plot();
+            }
+        }
 
         // methods to write together during class
         totalPlants();
@@ -21,20 +25,41 @@ public class MyFarm {
          * for each additional method you code, call it here
          */
 
-
+        averageNumberOfPlants();
+        everyOtherNeedsWater();
     }
 
     public void totalPlants() {
         // how many plants are there in total across all plots?
+        int sum = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                sum += grid[r][c].numberOfPlants;
+            }
+        }
+        System.out.printf("There are %s plants.\n", sum);
     }
 
     public void totalCarrots() {
         // how many total carrots are there across all plots?
-
+        int sum = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                if (grid[r][c].plantName == "carrot") {
+                    sum += grid[r][c].numberOfPlants;
+                }
+            }
+        }
+        System.out.println("There are "+sum+" carrot plants.");
     }
 
     public void averageNumberOfPlants() {
         // what is the average number of plants across the whole row?
+        double total = 0;
+        for(Plot plot : grid[0]) {
+            total += plot.numberOfPlants;
+        }
+        System.out.println("The average number of plants in the first row is "+total/grid[0].length+".");
 
     }
 
@@ -45,13 +70,22 @@ public class MyFarm {
 
     public void numberOfEmptyPlots() {
         // how many plots are empty?
-
+        int total = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                if (grid[r][c].plantName.equals("empty")) total++;
+            }
+        }
+        System.out.println(total+" plots are empty.");
     }
 
     public void everyOtherNeedsWater() {
         // change the value of needsWater to be true for every other plot
-        // print the value or needs water for all plots row by row
-
+        // print the value of needs water for all plots row by row
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+            }
+        }
     }
 
     public void plantWithMaxNumber() {
@@ -120,6 +154,14 @@ public class MyFarm {
     public void numberOfCarrotPlotsNextToCorn() {
         // how many carrot plots share a border with a corn plot?
 
+    }
+
+    public void printInfo() {
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                grid[r][c].printPlotInfo();
+            }
+        }
     }
 
 }

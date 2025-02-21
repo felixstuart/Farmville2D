@@ -44,6 +44,4 @@ public class Plot {
         System.out.println();
 
     }
-
-
 }
